@@ -1,0 +1,10 @@
+<svg width="12" height="16" viewBox="0 0 12 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+  <title>pause</title>
+  <desc>Created with Sketch.</desc>
+  <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="pause" fill="#FFFFFF">
+          <path d="M1,0 C0.44772,0 0,0.44772 0,1 L0,15 C0,15.5523 0.44772,16 1,16 L4,16 C4.5523,16 5,15.5523 5,15 L5,1 C5,0.44772 4.5523,0 4,0 L1,0 Z M8,0 C7.4477,0 7,0.44772 7,1 L7,15 C7,15.5523 7.4477,16 8,16 L11,16 C11.5523,16 12,15.5523 12,15 L12,1 C12,0.44772 11.5523,0 11,0 L8,0 Z" id="Mask"></path>
+      </g>
+  </g>
+</svg>

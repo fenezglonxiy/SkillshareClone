@@ -1,0 +1,1 @@
+export const CLASS_BODY_PADDING_INLINE = 24;

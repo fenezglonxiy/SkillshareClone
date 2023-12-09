@@ -1,0 +1,3 @@
+export const CLASS_HOME_MAX_WIDTH = 1496;
+
+export const XXL_CLASS_HOME_PADDING_LEFT = 72;

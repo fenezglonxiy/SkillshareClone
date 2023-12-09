@@ -1,15 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import ThemeProvider from "./theme/ThemeProvider";
+import createTheme from "./theme/createTheme";
+import { HelmetProvider } from "react-helmet-async";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
+const theme = createTheme();
+
 root.render(
   <React.StrictMode>
-    <App />
+    <HelmetProvider>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </HelmetProvider>
   </React.StrictMode>
 );
 

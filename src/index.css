@@ -1,13 +1,48 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "GT Walsheim Pro";
+  src: url("/public/fonts/GTWalsheimPro-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: "GT Walsheim Pro";
+  src: url("/public/fonts/GTWalsheimPro-Medium.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT Walsheim Pro";
+  src: url("/public/fonts/GTWalsheimPro-Bold.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SegoeUI";
+  src: url("/public/fonts/SegoeUI.woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SegoeUI";
+  src: url("/public/fonts/SegoeUI-SemiBold.woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SegoeUI";
+  src: url("/public/fonts/SegoeUI-Bold.woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ssicon";
+  src: url("/public/fonts/ssicon.woff");
+  font-weight: 400;
+  font-style: normal;
 }
