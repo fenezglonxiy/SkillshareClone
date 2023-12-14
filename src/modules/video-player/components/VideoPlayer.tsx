@@ -5,18 +5,22 @@ import React from "react";
 import videojs from "video.js";
 import Player from "video.js/dist/types/player";
 import "video.js/dist/video-js.css";
-import getVideoPlayerCss from "./getVideoPlayerCss";
+import getSSVideoPlayerCss, {
+  vjsSsSkinClasses,
+} from "./__styles__/getVjsSsSkinCss";
 import "./SSBigPlayButton";
 import "./SSControlBar";
 
 const initialOptions = {
   autoplay: false,
   controls: true,
-  fill: true,
+  textTrackSettings: false,
+  aspectRatio: "16:9",
+  responsive: true,
   sources: [
     {
-      src: "//vjs.zencdn.net/v/oceans.mp4",
-      type: "video/mp4",
+      src: "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
+      type: "application/dash+xml",
     },
   ],
   children: [
@@ -31,6 +35,17 @@ const initialOptions = {
     "textTrackSettings",
     "resizeManager",
   ],
+  playbackRates: [2, 1.5, 1.25, 1],
+  html5: {
+    vhs: {
+      overrideNative: true,
+      limitRenditionByPlayerDimensions: false,
+      smoothQualityChange: false,
+      nativeCaptions: false,
+      nativeAudioTracks: false,
+      nativeVideoTracks: false,
+    },
+  },
 };
 
 const VideoPlayer = () => {
@@ -65,16 +80,20 @@ const VideoPlayer = () => {
     };
   }, [playerRef]);
 
+  const theme = useTheme();
+  const css = getSSVideoPlayerCss(theme);
+
   const createVideoJSPlayer = (videoNode: HTMLElement) => {
     const player = videojs(videoNode, {
       ...initialOptions,
+      breakpoints: {
+        medium: theme.breakpoints.values.xs,
+      },
     });
 
+    player.addClass(vjsSsSkinClasses["ss-skin"]);
     playerRef.current = player;
   };
-
-  const theme = useTheme();
-  const css = getVideoPlayerCss(theme);
 
   return <div data-vjs-player ref={videoRef} css={css} />;
 };
