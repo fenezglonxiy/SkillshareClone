@@ -22,3 +22,5 @@ export const FULLSCREEN_ICON_URL = PREFIX_URL + "fullscreen.svg";
 export const MINIMIZE_ICON_URL = PREFIX_URL + "minimize.svg";
 
 export const CHECKMARK_ICON_URL = PREFIX_URL + "checkmark.svg";
+
+export const CLOSE_ICON_URL = PREFIX_URL + "close.svg";

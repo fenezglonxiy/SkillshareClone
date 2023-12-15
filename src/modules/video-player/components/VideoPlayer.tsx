@@ -5,18 +5,22 @@ import React from "react";
 import videojs from "video.js";
 import Player from "video.js/dist/types/player";
 import "video.js/dist/video-js.css";
-import getSSVideoPlayerCss, {
+import getVjsSsSkinCss, {
   vjsSsSkinClasses,
 } from "./__styles__/getVjsSsSkinCss";
-import "./SSBigPlayButton";
+import "./SSBigPlayToggle";
+import "./SSCloseButton";
 import "./SSControlBar";
 
 const initialOptions = {
   autoplay: false,
   controls: true,
   textTrackSettings: false,
-  aspectRatio: "16:9",
   responsive: true,
+  breakpoints: {
+    small: 300,
+    medium: 550,
+  },
   sources: [
     {
       src: "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
@@ -24,16 +28,17 @@ const initialOptions = {
     },
   ],
   children: [
-    "mediaLoader",
-    "posterImage",
-    "textTrackDisplay",
-    "loadingSpinner",
-    "SSBigPlayButton",
-    "liveTracker",
+    "MediaLoader",
+    "PosterImage",
+    "TextTrackDisplay",
+    "LoadingSpinner",
+    "SSBigPlayToggle",
+    "SSCloseButton",
+    "LiveTracker",
     "SSControlBar",
-    "errorDisplay",
-    "textTrackSettings",
-    "resizeManager",
+    "ErrorDisplay",
+    "TextTrackSettings",
+    "ResizeManager",
   ],
   playbackRates: [2, 1.5, 1.25, 1],
   html5: {
@@ -81,17 +86,15 @@ const VideoPlayer = () => {
   }, [playerRef]);
 
   const theme = useTheme();
-  const css = getSSVideoPlayerCss(theme);
+  const css = getVjsSsSkinCss(theme);
 
   const createVideoJSPlayer = (videoNode: HTMLElement) => {
     const player = videojs(videoNode, {
       ...initialOptions,
-      breakpoints: {
-        medium: theme.breakpoints.values.xs,
-      },
     });
 
-    player.addClass(vjsSsSkinClasses["ss-skin"]);
+    player.addClass(vjsSsSkinClasses["ss-skin"], vjsSsSkinClasses["pip-mode"]);
+
     playerRef.current = player;
   };
 

@@ -28,12 +28,9 @@ const getContainerStyles = (theme: Theme) => css`
 `;
 
 const getVideoPlayerWrapperStyles = (theme: Theme) => css`
+  min-width: 375px;
   aspect-ratio: 16/9;
-
-  ${theme.breakpoints.up("lg")} {
-    flex-basis: 375px;
-    max-width: 375px;
-  }
+  background-color: ${theme.palette.black};
 `;
 
 const getClassTitleContainerStyles = (theme: Theme) => css`

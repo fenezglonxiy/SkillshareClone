@@ -2,14 +2,17 @@ import { Theme, css } from "@mui/material";
 import generateVideoJSClassNames from "../../utils/generateVideoJSClassNames";
 import {
   CONTROL_BAR_HEIGHT,
+  PIP_MODE_CONTROL_BAR_HEIGHT,
   PROGRESS_BAR_HEIGHT,
 } from "../../constants/cssConstants";
 import { MINIMIZE_ICON_URL } from "../../constants/iconUrl";
-import getCenterBigPlayButtonCss from "./getCenterBigPlayButtonCss";
+import getBigPlayButtonCss from "./getBigPlayButtonCss";
 import getControlBarCss, { controlBarClassNames } from "./getControlBarCss";
+import getCloseButtonCss from "./getCloseButtonCss";
 
 const { classes, classNames } = generateVideoJSClassNames([
   "ss-skin",
+  "pip-mode",
   "user-inactive",
   "user-active",
   "fullscreen",
@@ -18,6 +21,7 @@ const { classes, classNames } = generateVideoJSClassNames([
   "layout-x-large",
   "layout-huge",
   "big-play-button",
+  "close-button",
   "control-bar",
 ]);
 
@@ -36,12 +40,35 @@ export const {
   "exposed",
 ]);
 
-const getSSVideoPlayerCss = (theme: Theme) => css`
-  overflow: hidden;
-
+const getVjsSsSkinCss = (theme: Theme) => css`
   ${classNames["ss-skin"]} {
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+
+    &${classNames["layout-large"]},
+      &${classNames["layout-x-large"]},
+      &${classNames["layout-huge"]} {
+      ${controlBarClassNames["current-time"]},
+      ${controlBarClassNames["time-divider"]},
+      ${controlBarClassNames["duration"]} {
+        display: block;
+      }
+    }
+
+    ${controlBarClassNames["playback-rate"]},
+    ${controlBarClassNames["volume-control"]} {
+      display: block;
+    }
+
     ${classNames["big-play-button"]} {
-      ${getCenterBigPlayButtonCss(theme)}
+      ${getBigPlayButtonCss(theme)}
+    }
+
+    ${classNames["close-button"]} {
+      ${getCloseButtonCss(theme)}
+      display: none;
     }
 
     ${classNames["control-bar"]} {
@@ -67,18 +94,73 @@ const getSSVideoPlayerCss = (theme: Theme) => css`
         }
       }
     }
+  }
 
-    &${classNames["layout-medium"]},
-      &${classNames["layout-large"]},
-      &${classNames["layout-x-large"]},
-      &${classNames["layout-huge"]} {
-      ${controlBarClassNames["current-time"]},
-      ${controlBarClassNames["time-divider"]},
-      ${controlBarClassNames["duration"]} {
+  ${classNames["pip-mode"]} {
+    position: fixed;
+    width: 300px;
+    aspect-ratio: 2 / 1;
+    bottom: ${theme.spacing(14)};
+    right: ${theme.spacing(14)};
+    z-index: ${theme.zIndex.mobileStepper};
+    border-radius: 8px;
+
+    ${classNames["big-play-button"]} {
+      display: block;
+      width: 48px;
+      height: 48px;
+
+      &::before {
+        font-size: 24px;
+      }
+    }
+
+    ${classNames["close-button"]} {
+      display: block;
+    }
+
+    ${classNames["control-bar"]} {
+      height: ${PIP_MODE_CONTROL_BAR_HEIGHT}px;
+
+      & > *:not(${controlBarClassNames["progress-control"]}) {
+        display: none;
+      }
+
+      ${controlBarClassNames["progress-control"]} {
         display: block;
+        bottom: ${PIP_MODE_CONTROL_BAR_HEIGHT}px;
+      }
+    }
+
+    &${classNames["user-inactive"]} {
+      ${classNames["big-play-button"]} {
+        opacity: 0;
+      }
+      ${classNames["close-button"]} {
+        opacity: 0;
+      }
+
+      ${classNames["control-bar"]} {
+        transform: translateY(
+          ${PIP_MODE_CONTROL_BAR_HEIGHT + CONTROL_BAR_HEIGHT}
+        );
+      }
+    }
+
+    &${classNames["user-active"]} {
+      ${classNames["big-play-button"]} {
+        opacity: 1;
+      }
+
+      ${classNames["close-button"]} {
+        opacity: 1;
+      }
+
+      ${classNames["control-bar"]} {
+        display: flex;
       }
     }
   }
 `;
 
-export default getSSVideoPlayerCss;
+export default getVjsSsSkinCss;

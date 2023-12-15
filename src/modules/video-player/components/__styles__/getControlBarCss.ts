@@ -101,8 +101,6 @@ const getPlayControlStyles = (theme: Theme) => css`
 `;
 
 const getPlaybackRateStyles = (theme: Theme) => css`
-  display: block;
-
   & ${classNames["playback-rate-value"]} {
     ${theme.typography.body1Medium};
     width: auto;
@@ -174,7 +172,6 @@ const getVolumePanelStyles = (theme: Theme) => css`
   }
 
   & ${classNames["volume-control"]} {
-    display: block;
     height: 100% !important;
 
     & ${classNames["volume-bar"]} {
