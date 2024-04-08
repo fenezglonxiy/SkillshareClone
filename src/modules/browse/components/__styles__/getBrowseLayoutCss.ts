@@ -6,10 +6,6 @@ import {
 } from "../constants";
 import { SerializedStyles } from "@emotion/react";
 
-const getRootStyles = () => css`
-  background: #fafafa;
-`;
-
 const getContainerStyles = (theme: Theme) => css`
   padding: ${theme.spacing(0, XXS_LAYOUT_CONTAINER_PADDING_INLINE, 80)};
 
@@ -50,7 +46,6 @@ const getSeeAllBtnWrapperStyles = (theme: Theme) => css`
 `;
 
 type BrowseLayoutStyledComponents =
-  | "root"
   | "container"
   | "leftColumn"
   | "rightColumn"
@@ -60,7 +55,6 @@ type BrowseLayoutStyledComponents =
 const getBrowseLayoutCss = (
   theme: Theme
 ): Record<BrowseLayoutStyledComponents, SerializedStyles> => ({
-  root: getRootStyles(),
   container: getContainerStyles(theme),
   leftColumn: getLeftColumnStyles(theme),
   rightColumn: getRightColumnStyles(theme),

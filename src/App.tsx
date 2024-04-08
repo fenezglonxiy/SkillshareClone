@@ -4,6 +4,8 @@ import BrowsePage from "./routes/BrowsePage";
 import PageLayout from "./modules/page/components/PageLayout";
 import BrowseLayout from "./modules/browse/components/BrowseLayout";
 import ClassLayout from "./modules/class-home/components/ClassLayout";
+import TeachLayout from "./modules/teach/components/TeachLayout";
+import TeacherApplicationLayout from "./modules/teacher-apl/components/TeacherAplLayout";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
             element: <></>,
           },
         ],
+      },
+      {
+        path: "teach/",
+        element: <TeachLayout />,
+      },
+      {
+        path: "teach/apply",
+        element: <TeacherApplicationLayout />,
       },
     ],
   },

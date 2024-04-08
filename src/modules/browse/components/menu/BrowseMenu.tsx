@@ -10,6 +10,7 @@ import BrowseLink from "../BrowseLink";
 import getBrowseMenuCss, { browseMenuClasses } from "./getBrowseMenuCss";
 import { ClassNames } from "@emotion/react";
 import { COLUMN_BASED_BROWSE_ROUTES } from "./constants";
+import SvgChevronDown from "../../assets/SvgChevronDown";
 
 const BrowseMenu = () => {
   const theme = useTheme();
@@ -86,7 +87,14 @@ const BrowseMenu = () => {
           }}
         >
           <Button variant="ghostLink" onClick={openHeaderMenu}>
-            Browse
+            Browse{" "}
+            <SvgChevronDown
+              css={css`
+                margin: 6px 0 0 4px;
+              `}
+              width="12px"
+              height="12px"
+            />
           </Button>
         </Tooltip>
       )}

@@ -11,79 +11,66 @@ import getVjsSsSkinCss, {
 import "./SSBigPlayToggle";
 import "./SSCloseButton";
 import "./SSControlBar";
+import initialOptions from "../constants/initialOptions";
 
-const initialOptions = {
-  autoplay: false,
-  controls: true,
-  textTrackSettings: false,
-  responsive: true,
-  breakpoints: {
-    small: 300,
-    medium: 550,
-  },
-  sources: [
-    {
-      src: "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
-      type: "application/dash+xml",
-    },
-  ],
-  children: [
-    "MediaLoader",
-    "PosterImage",
-    "TextTrackDisplay",
-    "LoadingSpinner",
-    "SSBigPlayToggle",
-    "SSCloseButton",
-    "LiveTracker",
-    "SSControlBar",
-    "ErrorDisplay",
-    "TextTrackSettings",
-    "ResizeManager",
-  ],
-  playbackRates: [2, 1.5, 1.25, 1],
-  html5: {
-    vhs: {
-      overrideNative: true,
-      limitRenditionByPlayerDimensions: false,
-      smoothQualityChange: false,
-      nativeCaptions: false,
-      nativeAudioTracks: false,
-      nativeVideoTracks: false,
-    },
-  },
+type Props = {
+  setVideoPlayer: (player: Player) => void;
+  pipEnabled?: boolean;
 };
 
-const VideoPlayer = () => {
-  const videoRef = React.useRef<HTMLDivElement>(null);
+const VideoPlayer = (props: Props) => {
+  const videoPlaceholderRef = React.useRef<HTMLDivElement>(null);
   const playerRef = React.useRef<Player | null>(null);
+  const { setVideoPlayer, pipEnabled } = props;
 
   React.useEffect(() => {
     if (!playerRef.current) {
-      if (!videoRef.current) {
+      if (!videoPlaceholderRef.current) {
         return;
       }
 
       const videoNode = document.createElement("video-js");
       videoNode.classList.add("vjs-big-play-centered");
-      videoRef.current.appendChild(videoNode);
+      videoPlaceholderRef.current.appendChild(videoNode);
       createVideoJSPlayer(videoNode);
+
+      if (playerRef.current) {
+        setVideoPlayer(playerRef.current);
+      }
     } else {
       const player = playerRef.current;
       player.autoplay(initialOptions.autoplay);
       player.src(initialOptions.sources);
     }
-  }, []);
-
-  React.useEffect(() => {
-    const player = playerRef.current;
 
     return () => {
+      const player = playerRef.current;
+
       if (player && !player.isDisposed()) {
         player.dispose();
         playerRef.current = null;
       }
     };
-  }, [playerRef]);
+  }, []);
+
+  // React.useEffect(() => {
+  //   const player = playerRef.current;
+
+  //   return () => {
+  //     if (player && !player.isDisposed()) {
+  //       player.dispose();
+  //       playerRef.current = null;
+  //     }
+  //   };
+  // }, [playerRef]);
+
+  React.useEffect(() => {
+    if (pipEnabled) {
+      playerRef.current?.addClass(vjsSsSkinClasses["pip-mode"]);
+    } else {
+      playerRef.current?.removeClass(vjsSsSkinClasses["pip-mode"]);
+    }
+  }, [pipEnabled]);
 
   const theme = useTheme();
   const css = getVjsSsSkinCss(theme);
@@ -91,14 +78,15 @@ const VideoPlayer = () => {
   const createVideoJSPlayer = (videoNode: HTMLElement) => {
     const player = videojs(videoNode, {
       ...initialOptions,
+      id: "test",
     });
 
-    player.addClass(vjsSsSkinClasses["ss-skin"], vjsSsSkinClasses["pip-mode"]);
+    player.addClass(vjsSsSkinClasses["ss-skin"]);
 
     playerRef.current = player;
   };
 
-  return <div data-vjs-player ref={videoRef} css={css} />;
+  return <div data-vjs-player ref={videoPlaceholderRef} css={css} />;
 };
 
 export default VideoPlayer;

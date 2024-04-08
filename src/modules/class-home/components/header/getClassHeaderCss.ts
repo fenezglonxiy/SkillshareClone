@@ -74,7 +74,7 @@ const getClassBadgeStyles = (theme: Theme) => css`
   }
 `;
 
-const getTeacherLinkContainerStyles = () => css`
+const getTeacherLinkStyles = () => css`
   display: flex;
   align-items: center;
 `;
@@ -98,7 +98,7 @@ type ClassHeaderStyledComponents =
   | "classTitle"
   | "classBadge"
   | "classBadgeWrapper"
-  | "teacherLinkContainer"
+  | "teacherLink"
   | "teacherAvatar";
 
 const getClassHeaderCss = (
@@ -112,7 +112,7 @@ const getClassHeaderCss = (
   classTitle: getClassTitleStyles(theme),
   classBadgeWrapper: getClassBadgeWrapperStyles(theme, classBadge),
   classBadge: getClassBadgeStyles(theme),
-  teacherLinkContainer: getTeacherLinkContainerStyles(),
+  teacherLink: getTeacherLinkStyles(),
   teacherAvatar: getTeacherAvatarStyles(theme),
 });
 

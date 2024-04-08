@@ -1,7 +1,7 @@
 import { Theme, css } from "@mui/material";
-import { CLOSE_ICON_URL } from "../../constants/iconUrl";
+import { CLOSE_ICON_URL } from "../../constants/cssConstants";
 import {
-  BIG_BUTTON_BACKGROUND_COLOR,
+  BIG_BUTTON_BG_COLOR,
   BIG_BUTTON_BORDER_RADIUS_PCT,
 } from "../../constants/cssConstants";
 
@@ -11,7 +11,7 @@ const getCloseButtonCss = (theme: Theme) => css`
   top: ${theme.spacing(8)};
   right: ${theme.spacing(8)};
   border-radius: ${BIG_BUTTON_BORDER_RADIUS_PCT}%;
-  background-color: ${BIG_BUTTON_BACKGROUND_COLOR};
+  background-color: ${BIG_BUTTON_BG_COLOR};
   color: ${theme.palette.white};
   transition: opacity 0.25s linear;
 

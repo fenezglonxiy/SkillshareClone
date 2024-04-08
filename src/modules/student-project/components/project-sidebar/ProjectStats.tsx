@@ -15,7 +15,7 @@ const ProjectStats: React.FC<Props> = ({ theme }) => {
 
   return (
     <div css={styled.root}>
-      <button css={styled.likeProjectButton}>
+      <button css={styled.likeProjectButton} aria-label="like">
         <SvgHeart size="large" />
       </button>
       <div css={styled.projectStatsInfo}>

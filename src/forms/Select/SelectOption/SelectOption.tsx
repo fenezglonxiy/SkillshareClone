@@ -33,6 +33,11 @@ export type SelectOptionProps = {
   selected?: boolean;
 
   /**
+   * Specifies whether the selected color is inverted.
+   */
+  invertedSelectedColor?: boolean;
+
+  /**
    * Defines if option is disabled.
    * Used to disable placeholder.
    */
@@ -49,11 +54,19 @@ const SelectOption = (
   props: SelectOptionProps,
   ref: React.Ref<HTMLLIElement>
 ) => {
-  const { selected, hidden, disabled, iconDisabled, children, ...rest } = props;
+  const {
+    selected,
+    hidden,
+    disabled,
+    iconDisabled,
+    children,
+    invertedSelectedColor,
+    ...rest
+  } = props;
   const isSelected = selected && !disabled;
 
   const theme = useTheme();
-  const css = getSelectOptionCss(theme, iconDisabled as boolean);
+  const css = getSelectOptionCss(theme, props);
 
   return !hidden ? (
     <MuiMenuItem

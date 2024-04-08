@@ -3,6 +3,9 @@ import { Theme } from "@mui/material";
 import generateVideoJSClassNames from "../../utils/generateVideoJSClassNames";
 import { videoJsCommonClassNames } from "./getVjsSsSkinCss";
 import {
+  CONTROL_BAR_BG_COLOR,
+  CONTROL_BAR_HEIGHT,
+  PROGRESS_BAR_HEIGHT,
   CHECKMARK_ICON_URL,
   FIFTEEN_SECOND_REWIND_ICON_URL,
   FULLSCREEN_ICON_URL,
@@ -11,12 +14,9 @@ import {
   PLAY_ICON_URL,
   QUALITY_LEVELS_ICON_URL,
   TRANSCRIPT_MODE_ICON_URL,
+  TRANSCRIPT_ON_ICON_URL,
   VOLUME_MAX_ICON_URL,
   VOLUME_MEDIUM_ICON_URL,
-} from "../../constants/iconUrl";
-import {
-  CONTROL_BAR_HEIGHT,
-  PROGRESS_BAR_HEIGHT,
 } from "../../constants/cssConstants";
 
 const { classes, classNames } = generateVideoJSClassNames([
@@ -46,6 +46,7 @@ const { classes, classNames } = generateVideoJSClassNames([
   "volume-bar",
   "volume-level",
   "transcript-mode-control",
+  "transcript-on",
   "quality-levels-control",
   "fullscreen-control",
 ]);
@@ -193,6 +194,12 @@ const getTranscriptModeControlStyles = () => css`
   & button {
     background-image: url(${TRANSCRIPT_MODE_ICON_URL});
   }
+
+  &${classNames["transcript-on"]} {
+    & button {
+      background-image: url(${TRANSCRIPT_ON_ICON_URL});
+    }
+  }
 `;
 
 const getQualityLevelsControlStyles = () => css`
@@ -220,7 +227,7 @@ const getMenuStyles = (theme: Theme) => css`
   & ${videoJsCommonClassNames["menu-content"]} {
     max-height: 15em;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: ${CONTROL_BAR_BG_COLOR};
 
     & ${videoJsCommonClassNames["menu-item"]} {
       ${getMenuItemStyles(theme)};
@@ -234,7 +241,7 @@ const getMenuStyles = (theme: Theme) => css`
     margin-left: -10px;
     border-width: 10px;
     border-style: solid;
-    border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+    border-color: ${CONTROL_BAR_BG_COLOR} transparent transparent transparent;
   }
 `;
 
@@ -266,7 +273,7 @@ const getMenuItemStyles = (theme: Theme) => css`
 
 const getControlBarCss = (theme: Theme) => css`
   height: ${CONTROL_BAR_HEIGHT}px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: ${CONTROL_BAR_BG_COLOR};
   transition: transform 0.4s ease 0s !important;
   visibility: visible !important;
   opacity: 1 !important;

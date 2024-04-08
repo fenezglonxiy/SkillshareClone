@@ -36,7 +36,7 @@ type Props = {
   /**
    * Callback fired when `Close` button is clicked.
    */
-  handleClose?: React.MouseEventHandler<HTMLButtonElement>;
+  handleClose: React.MouseEventHandler<HTMLButtonElement>;
 } & DialogProps;
 
 const AuthModal = (props: Props): React.ReactElement<Props> => {
@@ -100,7 +100,7 @@ const AuthModal = (props: Props): React.ReactElement<Props> => {
               </form>
             </DialogContent>
             <DialogActions css={styled.actions}>
-              <button onClick={handleClose} type="button">
+              <button onClick={handleClose} type="button" aria-label="close">
                 <SvgClose />
               </button>
             </DialogActions>

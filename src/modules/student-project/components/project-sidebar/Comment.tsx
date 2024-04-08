@@ -57,7 +57,7 @@ const Comment: React.FC<CommentProps> = ({ theme, isReply, replies }) => {
 
           <div css={styled.commentLikeStat}>
             <span>2</span>
-            <button>
+            <button type="button" aria-label="like">
               <SvgHeart size="small" />
             </button>
           </div>

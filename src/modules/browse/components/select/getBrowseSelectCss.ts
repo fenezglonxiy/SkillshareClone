@@ -11,12 +11,20 @@ const getSelectStyles = (theme: Theme) => css`
   }
 `;
 
-type BrowseSelectStyledComponents = "select";
+const getSelectOptionLinkStyles = () => css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+
+type BrowseSelectStyledComponents = "select" | "selectOptionLink";
 
 const getBrowseSelectCss = (
   theme: Theme
 ): Record<BrowseSelectStyledComponents, SerializedStyles> => ({
   select: getSelectStyles(theme),
+  selectOptionLink: getSelectOptionLinkStyles(),
 });
 
 export default getBrowseSelectCss;

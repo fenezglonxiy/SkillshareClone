@@ -59,6 +59,13 @@ class SSTranscriptModeControl extends VjsMenuButton {
 
         transcript.selected(true);
         this.selectedIndex_ = index;
+
+        if (this.selectedIndex_ > 0) {
+          this.addClass(controlBarClasses["transcript-on"]);
+        } else {
+          this.removeClass(controlBarClasses["transcript-on"]);
+        }
+
         this.menu.removeClass(videoJsCommonClasses.exposed);
       });
     }

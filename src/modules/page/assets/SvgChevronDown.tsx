@@ -1,6 +1,6 @@
 import SvgIcon from "../../../SvgIcon/SvgIcon";
 
-const SvgDownChevron = ({ title = "", ...props }) => {
+const SvgChevronDown = ({ title = "", ...props }) => {
   return (
     <SvgIcon
       title={title}
@@ -17,4 +17,4 @@ const SvgDownChevron = ({ title = "", ...props }) => {
   );
 };
 
-export default SvgDownChevron;
+export default SvgChevronDown;

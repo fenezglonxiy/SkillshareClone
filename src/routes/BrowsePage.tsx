@@ -1,4 +1,4 @@
-import PageWrapper from "./PageWrapper";
+import PageWrapper from "../modules/page-wrapper/components/PageWrapper";
 
 const BrowsePage = () => {
   return (

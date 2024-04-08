@@ -4,8 +4,8 @@ import {
   CONTROL_BAR_HEIGHT,
   PIP_MODE_CONTROL_BAR_HEIGHT,
   PROGRESS_BAR_HEIGHT,
+  MINIMIZE_ICON_URL,
 } from "../../constants/cssConstants";
-import { MINIMIZE_ICON_URL } from "../../constants/iconUrl";
 import getBigPlayButtonCss from "./getBigPlayButtonCss";
 import getControlBarCss, { controlBarClassNames } from "./getControlBarCss";
 import getCloseButtonCss from "./getCloseButtonCss";

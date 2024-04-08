@@ -1,6 +1,6 @@
 import { Theme, css } from "@mui/material";
 import {
-  BIG_BUTTON_BACKGROUND_COLOR,
+  BIG_BUTTON_BG_COLOR,
   BIG_BUTTON_BORDER_RADIUS_PCT,
 } from "../../constants/cssConstants";
 import generateVideoJSClassNames from "../../utils/generateVideoJSClassNames";
@@ -16,7 +16,7 @@ const getBigPlayButtonCss = (theme: Theme) => css`
   width: 70px;
   height: 70px;
   border-radius: ${BIG_BUTTON_BORDER_RADIUS_PCT}%;
-  background-color: ${BIG_BUTTON_BACKGROUND_COLOR} !important;
+  background-color: ${BIG_BUTTON_BG_COLOR} !important;
   transition: opacity 0.25s linear;
 
   &::before {

@@ -11,8 +11,9 @@ import Input, { InputProps } from "../Input/Input";
 import React, { ReactNode } from "react";
 import { useFormControlContext } from "../FormControl/FormControlContext";
 import getSelectCss, { selectClasses } from "./getSelectCss";
-import SvgChevronDown from "./SvgChevronDown";
 import clsx from "clsx";
+import SvgStandardChevronDown from "./SvgStandardChevronDown";
+import SvgChevronDown from "./SvgChevronDown";
 
 export type SelectProps = {
   /**
@@ -151,23 +152,31 @@ const Select = React.forwardRef(function Select(
 ) {
   const {
     name,
+    value: valueFromProps,
+    defaultValue,
+    open: openFromProps,
+    inputProps,
     SelectDisplayProps,
-    onBlur,
-    onFocus,
     className,
     classes,
+    variant,
+    onBlur,
+    onFocus,
+    onOpen,
+    onClose,
+    onChange,
     ...muiProps
   } = props;
 
   const [value, setValue] = useControlled<any>({
-    controlled: props.value,
-    default: props.defaultValue,
+    controlled: valueFromProps,
+    default: defaultValue,
     name: "Select",
     state: "value",
   });
 
   const [open, setOpen] = useControlled<boolean>({
-    controlled: props.open,
+    controlled: openFromProps,
     default: false,
     name: "Select",
     state: "open",
@@ -199,7 +208,7 @@ const Select = React.forwardRef(function Select(
    */
   const handleOpen = (event: React.ChangeEvent<unknown>) => {
     setOpen(true);
-    props.onOpen?.(event);
+    onOpen?.(event);
   };
 
   /**
@@ -208,7 +217,7 @@ const Select = React.forwardRef(function Select(
    */
   const handleClose = (event: React.ChangeEvent<unknown>) => {
     setOpen(false);
-    props.onClose?.(event);
+    onClose?.(event);
   };
 
   /**
@@ -218,7 +227,7 @@ const Select = React.forwardRef(function Select(
   const handleSelection = (event: SelectChangeEvent<any>, child: ReactNode) => {
     setValue(event.target.value);
     setOpen(false);
-    props.onChange?.(event, child);
+    onChange?.(event, child);
   };
 
   return (
@@ -247,12 +256,11 @@ const Select = React.forwardRef(function Select(
         icon: selectClasses.icon,
       }}
       input={
-        <Input
-          inputProps={props.inputProps}
-          hideOutline={props.variant === "standard"}
-        />
+        <Input inputProps={inputProps} hideOutline={variant !== "outlined"} />
       }
-      IconComponent={SvgChevronDown}
+      IconComponent={
+        variant === "standard" ? SvgStandardChevronDown : SvgChevronDown
+      }
       open={open}
       value={value}
       onChange={handleSelection}
@@ -265,6 +273,7 @@ const Select = React.forwardRef(function Select(
 
 Select.defaultProps = {
   defaultValue: "",
+  variant: "outlined",
 };
 
 export default Select;

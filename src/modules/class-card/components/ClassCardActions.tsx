@@ -24,7 +24,7 @@ const ClassCardActions: React.FC<Props> = ({ teacherLink, teacherName }) => {
       >
         {teacherName}
       </Button>
-      <button type="button">
+      <button type="button" aria-label="save class">
         <SvgSaveClass />
       </button>
     </CardActions>

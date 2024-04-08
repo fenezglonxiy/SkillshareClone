@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from "react";
-import useId from "../../../../../utils/useId";
 
 type ClassRatingListContextProps = {
   /**
@@ -10,10 +9,9 @@ type ClassRatingListContextProps = {
 
 const Context = React.createContext<ClassRatingListContextProps>(null);
 
-const ClassRatingListContext: React.FC<PropsWithChildren & { id: string }> = ({
-  children,
-  id,
-}) => {
+type Props = PropsWithChildren & { id: string };
+
+const ClassRatingListContext: React.FC<Props> = ({ children, id }) => {
   const context = React.useMemo(() => {
     return { id };
   }, [id]);

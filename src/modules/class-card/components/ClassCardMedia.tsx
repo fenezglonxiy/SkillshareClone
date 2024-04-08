@@ -52,6 +52,7 @@ const ClassCardMedia = (props: Props) => {
         className={classMediaClasses.playBtn}
         css={styled.playBtn}
         type="button"
+        aria-label="play"
       >
         <SvgContainedPlay />
       </button>

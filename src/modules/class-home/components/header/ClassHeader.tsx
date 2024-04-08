@@ -6,7 +6,7 @@ import Typography from "../../../../Typography/Typography";
 import SvgStaffPick from "../../../../assets/SvgStaffPick";
 import getClassHeaderCss from "./getClassHeaderCss";
 import SvgOriginal from "../../../../assets/SvgOriginal";
-import VideoPlayer from "../../../video-player/components/VideoPlayer";
+import VideoPreviewItem from "../../../item-lecture/components/VideoPreviewItem";
 
 type Props = {
   classPromoVideoSrc: string;
@@ -25,7 +25,7 @@ const ClassHeader = () => {
     <header css={styled.root}>
       <div css={styled.container}>
         <div css={styled.videoPlayerWrapper}>
-          <VideoPlayer />
+          <VideoPreviewItem />
         </div>
         <div css={styled.classTitleContainer}>
           <div css={styled.classBadgeWrapper}>
@@ -34,7 +34,7 @@ const ClassHeader = () => {
           <Typography component="h1" color="white" css={styled.classTitle}>
             Design Your Virtual Persona: Create a VR Avatar With Unreal Engine
           </Typography>
-          <div css={styled.teacherLinkContainer}>
+          <div css={styled.teacherLink}>
             <Avatar css={styled.teacherAvatar}>Z</Avatar>
             <Link
               href="/"

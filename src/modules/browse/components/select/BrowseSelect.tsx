@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
-import { SelectChangeEvent, useTheme } from "@mui/material";
-import Select, { SelectProps } from "../../../../forms/Select/Select";
+import { useTheme } from "@mui/material";
+import Select from "../../../../forms/Select/Select";
 import SelectOption from "../../../../forms/Select/SelectOption/SelectOption";
 import { BROWSE_ROUTES, BrowseRouteNamesValues } from "../../constants/routes";
 import { Link } from "react-router-dom";
@@ -32,7 +32,9 @@ const BrowseSelect: React.FC<Props> = ({ routeName, renderRouteLabel }) => {
         >
           {BROWSE_ROUTES.map((route) => (
             <SelectOption key={route.label} value={route.value} iconDisabled>
-              <Link to={route.href}>{route.label}</Link>
+              <Link to={route.href} css={styled.selectOptionLink}>
+                {route.label}
+              </Link>
             </SelectOption>
           ))}
         </Select>

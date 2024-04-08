@@ -27,7 +27,7 @@ const PageHeaderMenu = () => {
   const renderNav = () => {
     return (
       <div>
-        <button type="button">
+        <button type="button" aria-label="close">
           <SvgClose />
         </button>
 

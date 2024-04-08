@@ -1,18 +1,25 @@
 import { SerializedStyles, css } from "@emotion/react";
 import { Theme } from "@mui/material";
 import generateEmotionClassNames from "../../../utils/generateEmotionClassNames";
+import { SelectOptionProps } from "./SelectOption";
 
 export const {
   classes: selectOptionClasses,
   classNames: selectOptionClassNames,
-} = generateEmotionClassNames("selectOption", ["container", "selected"]);
+} = generateEmotionClassNames("selectOption", ["selected", "container"]);
 
-const getIconDisabledStyles = (theme: Theme) => css`
+const getSelectOptionCss = (
+  theme: Theme,
+  props: SelectOptionProps
+): SerializedStyles => css`
+  display: flex;
+  justify-content: flex-start;
+
   ${selectOptionClassNames.container} {
     width: 100%;
     ${theme.typography.body2};
 
-    & a {
+    & > div:last-of-type {
       display: flex;
       align-items: center;
       height: 48px;
@@ -22,22 +29,21 @@ const getIconDisabledStyles = (theme: Theme) => css`
 
   &:hover,
   &:focus {
-    background: ${theme.palette.canvas};
+    background-color: ${theme.palette.canvas};
   }
 
   &${selectOptionClassNames.selected} {
-    color: ${theme.palette.white};
-    background: ${theme.palette.navy};
-  }
-`;
+    color: ${!props.invertedSelectedColor
+      ? theme.palette.white
+      : theme.palette.navy};
+    background-color: ${!props.invertedSelectedColor
+      ? theme.palette.navy
+      : theme.palette.concrete};
 
-const getSelectOptionCss = (
-  theme: Theme,
-  iconDisabled: boolean
-): SerializedStyles => css`
-  display: flex;
-  justify-content: flex-start;
-  ${iconDisabled && getIconDisabledStyles(theme)};
+    ${selectOptionClassNames.container} {
+      font-weight: bold;
+    }
+  }
 `;
 
 export default getSelectOptionCss;

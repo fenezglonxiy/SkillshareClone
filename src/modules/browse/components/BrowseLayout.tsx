@@ -17,6 +17,7 @@ import BrowseRelatedSkills from "./related-skills/BrowseRelatedSkills";
 import ClassCardSection from "../../class-card/section/ClassCardSection";
 import ClassCardGrid from "../../class-card/grid/ClassCardGrid";
 import ClassCard from "../../class-card/components/ClassCard";
+import PageWrapper from "../../page-wrapper/components/PageWrapper";
 
 const TEST_DATA1 = [
   {
@@ -72,8 +73,8 @@ const BrowseLayout = () => {
   }, [location]);
 
   return (
-    <BrowseContext.Provider value={{ routeName, updateRouteName }}>
-      <div css={styled.root}>
+    <PageWrapper title="" bgcolor="#fafafa">
+      <BrowseContext.Provider value={{ routeName, updateRouteName }}>
         <Container maxWidth="xl" css={styled.container} disableGutters>
           {isMdBreakpoint && (
             <div css={styled.leftColumn}>
@@ -135,8 +136,8 @@ const BrowseLayout = () => {
             <BrowseExplore />
           </div>
         </Container>
-      </div>
-    </BrowseContext.Provider>
+      </BrowseContext.Provider>
+    </PageWrapper>
   );
 };
 

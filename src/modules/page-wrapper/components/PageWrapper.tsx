@@ -1,6 +1,7 @@
-import { useTheme } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import PageWrapperContext from "./PageWrapperContext";
+import AuthModal from "../../auth/modal/AuthModal";
 
 type Props = {
   /**
@@ -33,8 +34,21 @@ const PageWrapper: React.FC<Props> = ({
   bgcolor,
   overflowX,
 }) => {
+  const [authModalMode, setAuthModalMode] = useState<
+    "signUp" | "signIn" | undefined
+  >(undefined);
+
+  const openSignUpModal = () => setAuthModalMode("signUp");
+
+  const openSignInModal = () => setAuthModalMode("signIn");
+
+  const handleCloseModal = () => setAuthModalMode(undefined);
+
   return (
-    <>
+    <PageWrapperContext
+      openSignUpModal={openSignUpModal}
+      openSignInModal={openSignInModal}
+    >
       <Helmet>
         <title>{title}</title>
         <meta charSet="utf-8" />
@@ -47,7 +61,13 @@ const PageWrapper: React.FC<Props> = ({
         `}</style>
       </Helmet>
       {children}
-    </>
+
+      <AuthModal
+        open={authModalMode !== undefined}
+        mode={authModalMode as NonNullable<typeof authModalMode>}
+        handleClose={handleCloseModal}
+      />
+    </PageWrapperContext>
   );
 };
 
